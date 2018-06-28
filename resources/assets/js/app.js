@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -7,10 +6,22 @@
 
 require('./bootstrap');
 
-/**
- * Next, we will create a fresh React component instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import React from 'react';
+import {render} from 'react-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-require('./components/Example');
+import App from "./components/app/App";
+import Home from "./components/home/Home";
+import Admin from "./components/admin/Admin";
+
+render(
+    <Router>
+        <App>
+            <Switch>
+                <Route exact path="/" component={Home}/>
+                <Route exact path="/admin" component={Admin}/>
+                <Route exact path="/admin/posts" render={() => <p>Just render in router</p>}/>
+            </Switch>
+        </App>
+    </Router>,
+    document.getElementById('app'));
